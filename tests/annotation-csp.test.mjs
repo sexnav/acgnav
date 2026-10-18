@@ -7,6 +7,11 @@ import { contentSecurityPolicy } from "../scripts/security-headers.mjs";
 const read = (name) => readFileSync(new URL(name, import.meta.url), "utf8");
 const css = read("./fixtures/browser-annotation.css");
 const allowedStyle = `'sha256-${createHash("sha256").update(css, "utf8").digest("base64")}'`;
+const selectionStyles = [
+  read("./fixtures/browser-annotation-selection.css"),
+  read("./fixtures/browser-annotation-text-selection.css"),
+  "", // The client clears its temporary stylesheet between selection modes.
+];
 const vercel = JSON.parse(read("../vercel.json")).headers.find((rule) => rule.source === "/(.*)").headers.find((header) => header.key === "Content-Security-Policy").value;
 const pages = read("../public/_headers").match(/^\s+Content-Security-Policy: (.+)$/m)[1];
 
@@ -22,6 +27,14 @@ for (const [platform, csp] of [["Generator", contentSecurityPolicy], ["Vercel", 
     assert.ok(!csp.includes("'unsafe-eval'"));
     assert.ok(csp.includes("object-src 'none'"));
     assert.ok(csp.includes("frame-ancestors 'none'"));
+  });
+
+  test(`${platform}: admits native selection, text selection and cleanup styles`, () => {
+    const styleSrc = csp.split(";").map((part) => part.trim()).find((part) => part.startsWith("style-src "));
+    for (const text of selectionStyles) {
+      const hash = `'sha256-${createHash("sha256").update(text, "utf8").digest("base64")}'`;
+      assert.ok(styleSrc?.split(/\s+/).includes(hash), `selection style blocked; expected ${hash}`);
+    }
   });
 }
 

@@ -224,7 +224,7 @@ export function AddressPublisher({ config }) {
           >
             <p className="reco-label">
               <span className="reco-bolt" aria-hidden="true">⚡</span>
-              <span>{best ? (best.version === "2.0" ? "优先推荐 2.0" : "1.0 备用推荐 · 新版本轮未响应") : running ? config.recommendationLabel : config.recommendationEmpty}</span>
+              <span>{best?.version === "1.0" ? "1.0 备用推荐 · 新版本轮未响应" : best || running ? config.recommendationLabel : config.recommendationEmpty}</span>
             </p>
             <div className="reco-body">
               <div className="reco-main">
@@ -298,7 +298,7 @@ export function AddressPublisher({ config }) {
               <div className="route-group" key={group.version}>
                 <div className="route-group__heading">
                   <h3>{group.title}</h3>
-                  <span>{group.description}</span>
+                  {group.description && <span>{group.description}</span>}
                 </div>
                 <ol className="line-list" aria-label={group.title}>
                   {rows.filter((row) => row.version === group.version).map((row) => (
@@ -311,9 +311,9 @@ export function AddressPublisher({ config }) {
 
           <section className="notices" aria-labelledby="notice-title">
             <h3 id="notice-title">温馨提示</h3>
-            <ul>
+            <ol className="notice-list">
               {config.notices.map((notice) => <li key={notice}>{notice}</li>)}
-            </ul>
+            </ol>
           </section>
         </main>
 

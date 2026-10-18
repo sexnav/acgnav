@@ -629,9 +629,9 @@ a.reco-url:hover {
   color: #f0abfc;
 }
 
-.notices ul {
+.notices .notice-list {
   margin: 0;
-  padding-left: 18px;
+  padding-left: 24px;
   color: var(--muted);
   font-size: 13.5px;
 }
@@ -641,6 +641,7 @@ a.reco-url:hover {
 }
 
 .notices li::marker {
+  content: counter(list-item) "、";
   color: var(--brand);
 }
 
