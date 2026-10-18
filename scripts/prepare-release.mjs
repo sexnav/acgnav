@@ -1,4 +1,5 @@
-import { copyFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { PAGE_CONFIGS } from "../app/src/config.js";
@@ -6,6 +7,12 @@ import { contentSecurityPolicy as csp } from "./security-headers.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "public");
+// Some browser/CDN caches retain the old response policy when HTML bytes and
+// ETag stay unchanged. Tie the document bytes to its security policy as well.
+const policyRevision = createHash("sha256").update(csp).digest("hex").slice(0, 16);
+const indexPath = path.join(output, "index.html");
+const html = readFileSync(indexPath, "utf8").replace(/\s*<meta name="security-policy-revision" content="[^"]*" \/>/g, "");
+writeFileSync(indexPath, html.replace("</head>", `  <meta name="security-policy-revision" content="${policyRevision}" />\n  </head>`));
 for (const name of ["404.html", "go.html", "nav.html"]) copyFileSync(path.join(output, "index.html"), path.join(output, name));
 writeFileSync(path.join(output, "health.json"), JSON.stringify({ project: "acgnav", status: "ok", schemaVersion: 1 }) + "\n");
 writeFileSync(path.join(output, "config.json"), JSON.stringify({

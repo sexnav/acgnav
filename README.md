@@ -49,3 +49,5 @@ node scripts/verify-release.mjs
 严格的 `style-src 'self'` 会拦住桌面浏览器注入的批注样式，出现点击批注后拖动没有选框的现象。`scripts/security-headers.mjs` 对 2026-10-18 实测的批注样式添加精确 SHA-256 白名单，保留脚本限制，也不整体开放内联样式。
 
 该样式的原始字节固定在 `tests/fixtures/browser-annotation.css`，回归测试同时校验生成器与两个平台配置。桌面客户端更新导致样式变化时，重新采集并更新样式哈希和测试样本。
+
+HTML 会同时携带基于 CSP 计算的发布指纹，确保安全响应头调整后文档字节与 ETag 也变化，避免根地址继续命中旧策略缓存。

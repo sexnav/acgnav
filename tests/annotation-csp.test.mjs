@@ -29,3 +29,10 @@ test("generator and both platform policies have one shared value", () => {
   assert.equal(vercel, pages);
   assert.equal(vercel, contentSecurityPolicy);
 });
+
+test("HTML changes with CSP so cached documents cannot retain the old annotation policy", () => {
+  const revision = createHash("sha256").update(contentSecurityPolicy).digest("hex").slice(0, 16);
+  for (const page of ["index.html", "404.html", "go.html", "nav.html"]) {
+    assert.ok(read(`../public/${page}`).includes(`<meta name="security-policy-revision" content="${revision}" />`), `${page} has no current CSP revision`);
+  }
+});
