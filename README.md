@@ -43,3 +43,9 @@ node scripts/verify-release.mjs
 - Netlify：连接本仓库 `main`，按根目录 `netlify.toml` 发布 `public`。
 - 推送已验证的发布快照后，各平台从同一 commit 自动部署；健康检查禁止缓存，资源使用内容哈希。
 - `.netlify/`、`.vercel/`、凭据与本地证据均已忽略。
+
+## 侧边浏览器批注兼容
+
+严格的 `style-src 'self'` 会拦住桌面浏览器注入的批注样式，出现点击批注后拖动没有选框的现象。`scripts/security-headers.mjs` 对 2026-10-18 实测的批注样式添加精确 SHA-256 白名单，保留脚本限制，也不整体开放内联样式。
+
+该样式的原始字节固定在 `tests/fixtures/browser-annotation.css`，回归测试同时校验生成器与两个平台配置。桌面客户端更新导致样式变化时，重新采集并更新样式哈希和测试样本。

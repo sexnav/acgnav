@@ -1,0 +1,2 @@
+# CSP hashes are byte-sensitive: preserve this captured style exactly.
+tests/fixtures/browser-annotation.css -text

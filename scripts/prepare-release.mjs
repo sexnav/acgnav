@@ -2,6 +2,7 @@ import { copyFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { PAGE_CONFIGS } from "../app/src/config.js";
+import { contentSecurityPolicy as csp } from "./security-headers.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "public");
@@ -16,7 +17,6 @@ writeFileSync(path.join(output, "config.json"), JSON.stringify({
   targets: PAGE_CONFIGS.acg.routes,
 }, null, 2) + "\n");
 writeFileSync(path.join(output, "robots.txt"), "User-agent: *\nDisallow: /\n");
-const csp = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https: data:; connect-src 'self' https:; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests";
 writeFileSync(path.join(output, "_headers"), `/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
