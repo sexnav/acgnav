@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "brand": "GAMENTR.TOP",
+  "gateway": "https://gamentr.top/",
+  "gatewayAlias": "https://ntrgame.vercel.app/",
+  "mirrors": [
+    {
+      "id": "vercel",
+      "name": "Vercel 镜像",
+      "url": "https://acgo.vercel.app/?view=acg",
+      "probeUrl": "https://acgo.vercel.app/health.json",
+      "probeType": "health"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare 镜像",
+      "url": "https://acgo.pages.dev/?view=acg",
+      "probeUrl": "https://acgo.pages.dev/health.json",
+      "probeType": "health"
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify 镜像",
+      "url": "https://acgo.netlify.app/?view=acg",
+      "probeUrl": "https://acgo.netlify.app/health.json",
+      "probeType": "health"
+    }
+  ],
+  "targets": [
+    {
+      "id": "acgxx",
+      "name": "ACGXX",
+      "version": "2.0",
+      "url": "https://acgxx.com/"
+    },
+    {
+      "id": "acgyxj",
+      "name": "ACGYXJ",
+      "version": "2.0",
+      "url": "https://acgyxj.de/",
+      "note": "当前跳转 www.gamentr.com，版本以落地站为准"
+    },
+    {
+      "id": "acgntr",
+      "name": "ACGNTR",
+      "version": "1.0",
+      "url": "https://acgntr.com/"
+    },
+    {
+      "id": "gamentr",
+      "name": "GAMENTR",
+      "version": "1.0",
+      "url": "https://gamentr.com/"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+node_modules/
+.netlify/
+.vercel/
+.wrangler/
+.env
+.env.*
+!.env.example
+evidence/
+*.log
