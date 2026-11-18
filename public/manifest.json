@@ -7,6 +7,6 @@
   "display": "standalone",
   "theme_color": "#160824",
   "background_color": "#160824",
-  "description": "ACG 三平台镜像与 2.0 / 1.0 目标地址发布页。",
+  "description": "ACG 三平台镜像与 acgxx.com、acgyxj.de 地址发布页。",
   "icons": [{ "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
 }

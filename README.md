@@ -14,14 +14,12 @@
 
 ## 目标地址
 
-| 分组 | 域名 |
-| --- | --- |
-| 2.0 | <https://acgxx.com/> |
-| 2.0 | <https://acgyxj.de/> |
-| 1.0 | <https://acgntr.com/> |
-| 1.0 | <https://gamentr.com/> |
+| 域名 |
+| --- |
+| <https://acgxx.com/> |
+| <https://acgyxj.de/> |
 
-目标页优先推荐有响应的 2.0 地址，仅当全部 2.0 本轮未响应时推荐 1.0 备用地址。两组始终可见。2026-10-18 实测 `acgyxj.de` 重定向至 `www.gamentr.com`，界面按请求保留 2.0 分类并注明该现状。
+目标页把两个地址放在同一份「全部地址」列表里，推荐本轮响应最快的入口。`gamentr.com`、`www.gamentr.com`、`acgntr.com` 与 `www.acgntr.com` 已于 2026-11-18 停用，并由 Cloudflare Worker 将全部请求 301 到 `acgxx.com`，因此不再列入发布目标。
 
 **检测边界：** 镜像必须返回本项目的有效 health JSON；目标站采用跨域无凭据网络探测，浏览器的 opaque 响应仅证明网络往返完成，并不验证目标 HTTP 状态、站点内容或登录功能。
 

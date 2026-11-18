@@ -11,7 +11,14 @@ for (const ext of ["js", "css"]) {
 }
 assert.deepEqual(JSON.parse(read("../public/health.json")), { project: "acgnav", status: "ok", schemaVersion: 1 });
 assert.equal(PAGE_CONFIGS.gateway.routes.length, 3);
-assert.equal(PAGE_CONFIGS.acg.routes.length, 4);
+assert.deepEqual(PAGE_CONFIGS.acg.routes.map((route) => new URL(route.url).hostname), ["acgxx.com", "acgyxj.de"]);
+const published = JSON.parse(read("../public/config.json"));
+assert.deepEqual(published.targets, PAGE_CONFIGS.acg.routes);
+assert.deepEqual(published.mirrors, PAGE_CONFIGS.gateway.routes);
+const bundle = read(`../public/assets/${assets.find((file) => file.endsWith(".js"))}`);
+for (const retired of ["acgntr.com", "gamentr.com", "新版入口", "旧版入口", "备用推荐"]) {
+  assert.ok(!bundle.includes(retired), retired);
+}
 assert.equal(JSON.parse(read("../vercel.json")).outputDirectory, "public");
 assert.ok(read("../public/_headers").includes("Access-Control-Allow-Origin: *"));
 assert.ok(!html.includes("SEX123"));

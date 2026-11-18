@@ -5,10 +5,9 @@ export function initialRows(routes) {
   return routes.map((route, index) => ({ ...route, index, status: "wait", ms: null }));
 }
 
-export function pickBest(rows, preferredVersion) {
+export function pickBest(rows) {
   const available = rows.filter((row) => row.status === "ok" && Number.isFinite(row.ms));
-  const preferred = preferredVersion ? available.filter((row) => row.version === preferredVersion) : [];
-  return [...(preferred.length ? preferred : available)].sort((a, b) => a.ms - b.ms || a.index - b.index)[0] || null;
+  return [...available].sort((a, b) => a.ms - b.ms || a.index - b.index)[0] || null;
 }
 
 export function gradeFor(row) {

@@ -39,6 +39,6 @@ export function useRouteProbe(config) {
   }, [config]);
 
   useEffect(() => { run(); return () => currentRun.current?.abort(); }, [run]);
-  const best = useMemo(() => pickBest(rows, config.id === "acg" ? "2.0" : undefined), [rows, config.id]);
+  const best = useMemo(() => pickBest(rows), [rows]);
   return { rows, running, doneCount, completedAt, best, availableCount: rows.filter((row) => row.status === "ok").length, run };
 }
