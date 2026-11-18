@@ -28,20 +28,27 @@ test("publisher copy keeps the saved notices and omits the version split", async
   assert.ok(config.routes.every((route) => !route.note && !("version" in route)));
   for (const text of collectStrings(PAGE_CONFIGS)) {
     for (const banned of retiredCopy) assert.ok(!text.includes(banned), `${banned} in ${text}`);
+    assert.ok(!text.toLowerCase().includes("gamentr.top"), text);
   }
   const indexHtml = readFileSync(new URL("../app/index.html", import.meta.url), "utf8");
+  const manifestJson = readFileSync(new URL("../app/static/manifest.json", import.meta.url), "utf8");
   const description = indexHtml.match(/name="description"\s+content="([^"]*)"/)[1];
-  const manifest = JSON.parse(readFileSync(new URL("../app/static/manifest.json", import.meta.url), "utf8")).description;
+  const manifest = JSON.parse(manifestJson).description;
   for (const banned of retiredCopy) {
     assert.ok(!description.includes(banned), banned);
     assert.ok(!manifest.includes(banned), banned);
   }
+  assert.ok(!indexHtml.toLowerCase().includes("gamentr.top"));
+  assert.ok(!manifestJson.toLowerCase().includes("gamentr.top"));
+  assert.equal(JSON.parse(manifestJson).short_name, "ACGXX.TOP");
   assert.deepEqual(config.notices, [
-    "收藏 gamentr.top 永久地址发布页，回家不迷路。",
+    "收藏 acgxx.top 永久地址发布页，回家不迷路。",
     "最终内容以目标站实际打开的页面为准。",
     "测速仅反映当前网络响应，不代表目标站内容或功能验证；超时地址仍可手动尝试。",
   ]);
-  assert.equal(config.footer, "GAMENTR.TOP · 永久地址发布页");
+  assert.equal(config.footer, "ACGXX.TOP · 永久地址发布页");
+  assert.equal(config.siteName, "ACGXX.TOP");
+  assert.equal(PAGE_CONFIGS.gateway.siteName, "ACGXX.TOP");
 
   const server = await createServer({ server: { middlewareMode: true, hmr: false }, appType: "custom" });
   try {
@@ -61,6 +68,7 @@ test("publisher copy keeps the saved notices and omits the version split", async
     assert.ok(!html.includes("保留旧版 · 按需访问"));
     assert.ok(!html.includes("<span></span>"));
     for (const banned of retiredCopy) assert.ok(!html.includes(banned), banned);
+    assert.ok(!html.toLowerCase().includes("gamentr.top"));
   } finally {
     await server.close();
   }

@@ -1,10 +1,10 @@
-# ACGNAV · GAMENTR.TOP
+# ACGNAV · ACGXX.TOP
 
 独立的 ACG 双层地址发布项目，沿用统一紫色品牌系统。
 
 ## 入口与镜像
 
-- 永久入口：<https://gamentr.top/>（Vercel 项目：`ntrgame`）
+- 永久入口：<https://acgxx.top/>（Vercel 项目：`ntrgame`；`www.acgxx.top` 在托管层 301 到 apex）
 - 入口别名：<https://ntrgame.vercel.app/>
 - Vercel 镜像：<https://acgo.vercel.app/>
 - Cloudflare Pages 镜像：<https://acgo.pages.dev/>

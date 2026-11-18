@@ -2,7 +2,7 @@
 
 - This is a separate project from SEX123. Edit only this checkout.
 - Repository: `sexnav/acgnav`.
-- Entry: `https://gamentr.top/`, Vercel project alias `https://ntrgame.vercel.app/`.
+- Entry: `https://acgxx.top/`, Vercel project alias `https://ntrgame.vercel.app/`. `www.acgxx.top` 301s to the apex at the host. `gamentr.top` is retired and redirected to `acgxx.top` outside this app; do not restore it.
 - Mirrors: `https://acgo.vercel.app/`, `https://acgo.pages.dev/`, `https://acgo.netlify.app/`.
 - Publisher targets: acgxx.com and acgyxj.de, one flat list. gamentr.com, www.gamentr.com, acgntr.com and www.acgntr.com were retired on 2026-11-18 and 301 to acgxx.com; do not list them.
 - Preserve the established purple-black background, lavender text and purple-pink-orange CTA system on both layers.

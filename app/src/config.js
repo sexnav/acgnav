@@ -7,9 +7,9 @@ export const MIRROR_HOSTS = new Set([
 export const PAGE_CONFIGS = {
   gateway: {
     id: "gateway",
-    siteName: "GAMENTR.TOP",
-    documentTitle: "GAMENTR.TOP - ACG 永久入口",
-    description: "GAMENTR.TOP ACG 永久入口，智能检测 Vercel、Cloudflare Pages 和 Netlify 三个平台镜像。",
+    siteName: "ACGXX.TOP",
+    documentTitle: "ACGXX.TOP - ACG 永久入口",
+    description: "ACGXX.TOP ACG 永久入口，智能检测 Vercel、Cloudflare Pages 和 Netlify 三个平台镜像。",
     probeLabel: "三平台智能测速中",
     timeout: 3500,
     rounds: 2,
@@ -21,9 +21,9 @@ export const PAGE_CONFIGS = {
   },
   acg: {
     id: "acg",
-    siteName: "GAMENTR.TOP",
+    siteName: "ACGXX.TOP",
     titleLead: "ACGXX",
-    documentTitle: "ACGXX 最新可用地址 | GAMENTR.TOP",
+    documentTitle: "ACGXX 最新可用地址 | ACGXX.TOP",
     description: "ACGXX 永久地址发布页，自动检测 acgxx.com、acgyxj.de 的网络响应，也可以手动选择。",
     eyebrow: "地址发布页 · 自动测速",
     heroSuffix: "最新可用地址",
@@ -37,11 +37,11 @@ export const PAGE_CONFIGS = {
     sectionTitle: "全部地址",
     countUnit: "个地址有响应",
     notices: [
-      "收藏 gamentr.top 永久地址发布页，回家不迷路。",
+      "收藏 acgxx.top 永久地址发布页，回家不迷路。",
       "最终内容以目标站实际打开的页面为准。",
       "测速仅反映当前网络响应，不代表目标站内容或功能验证；超时地址仍可手动尝试。",
     ],
-    footer: "GAMENTR.TOP · 永久地址发布页",
+    footer: "ACGXX.TOP · 永久地址发布页",
     timeout: 4000,
     rounds: 2,
     routes: [

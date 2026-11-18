@@ -15,9 +15,15 @@ assert.deepEqual(PAGE_CONFIGS.acg.routes.map((route) => new URL(route.url).hostn
 const published = JSON.parse(read("../public/config.json"));
 assert.deepEqual(published.targets, PAGE_CONFIGS.acg.routes);
 assert.deepEqual(published.mirrors, PAGE_CONFIGS.gateway.routes);
+assert.equal(published.gateway, "https://acgxx.top/");
+assert.equal(published.brand, "ACGXX.TOP");
 const bundle = read(`../public/assets/${assets.find((file) => file.endsWith(".js"))}`);
-for (const retired of ["acgntr.com", "gamentr.com", "新版入口", "旧版入口", "备用推荐"]) {
+for (const retired of ["acgntr.com", "gamentr.com", "gamentr.top", "GAMENTR.TOP", "新版入口", "旧版入口", "备用推荐"]) {
   assert.ok(!bundle.includes(retired), retired);
+  assert.ok(!html.includes(retired), retired);
+}
+for (const file of ["../public/_headers", "../vercel.json", "../netlify.toml"]) {
+  assert.ok(!read(file).toLowerCase().includes("gamentr.top"), file);
 }
 assert.equal(JSON.parse(read("../vercel.json")).outputDirectory, "public");
 assert.ok(read("../public/_headers").includes("Access-Control-Allow-Origin: *"));
