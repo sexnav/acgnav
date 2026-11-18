@@ -17,8 +17,8 @@ for (const name of ["404.html", "go.html", "nav.html"]) copyFileSync(path.join(o
 writeFileSync(path.join(output, "health.json"), JSON.stringify({ project: "acgnav", status: "ok", schemaVersion: 1 }) + "\n");
 writeFileSync(path.join(output, "config.json"), JSON.stringify({
   schemaVersion: 1,
-  brand: "GAMENTR.TOP",
-  gateway: "https://gamentr.top/",
+  brand: "ACGXX.TOP",
+  gateway: "https://acgxx.top/",
   gatewayAlias: "https://ntrgame.vercel.app/",
   mirrors: PAGE_CONFIGS.gateway.routes,
   targets: PAGE_CONFIGS.acg.routes,

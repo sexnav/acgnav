@@ -10,11 +10,11 @@ test("empty rows are pending", () => assert.deepEqual(initialRows([{ id: "a" }])
 test("gateway chooses globally fastest verified mirror", () => {
   assert.equal(pickBest([{ id: "a", status: "ok", ms: 60 }, { id: "b", status: "ok", ms: 30 }, { id: "c", status: "fail", ms: 1 }]).id, "b");
 });
-test("2.0 remains preferred over faster 1.0", () => {
-  assert.equal(pickBest([{ id: "old", version: "1.0", status: "ok", ms: 10 }, { id: "new", version: "2.0", status: "ok", ms: 100 }], "2.0").id, "new");
+test("fastest responding route is recommended", () => {
+  assert.equal(pickBest([{ id: "slow", index: 0, status: "ok", ms: 100 }, { id: "fast", index: 1, status: "ok", ms: 10 }]).id, "fast");
 });
-test("1.0 fallback only when no 2.0 responds", () => {
-  assert.equal(pickBest([{ id: "old", version: "1.0", status: "ok", ms: 10 }, { id: "new", version: "2.0", status: "fail", ms: null }], "2.0").id, "old");
+test("equal latency keeps the earlier route", () => {
+  assert.equal(pickBest([{ id: "first", index: 0, status: "ok", ms: 40 }, { id: "second", index: 1, status: "ok", ms: 40 }]).id, "first");
 });
 test("all failed routes yield no invented recommendation", () => assert.equal(pickBest([{ status: "fail", ms: null }]), null));
 test("status thresholds and bars", () => {

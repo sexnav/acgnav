@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "brand": "GAMENTR.TOP",
-  "gateway": "https://gamentr.top/",
+  "brand": "ACGXX.TOP",
+  "gateway": "https://acgxx.top/",
   "gatewayAlias": "https://ntrgame.vercel.app/",
   "mirrors": [
     {
@@ -30,26 +30,12 @@
     {
       "id": "acgxx",
       "name": "ACGXX",
-      "version": "2.0",
       "url": "https://acgxx.com/"
     },
     {
       "id": "acgyxj",
       "name": "ACGYXJ",
-      "version": "2.0",
       "url": "https://acgyxj.de/"
-    },
-    {
-      "id": "acgntr",
-      "name": "ACGNTR",
-      "version": "1.0",
-      "url": "https://acgntr.com/"
-    },
-    {
-      "id": "gamentr",
-      "name": "GAMENTR",
-      "version": "1.0",
-      "url": "https://gamentr.com/"
     }
   ]
 }

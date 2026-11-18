@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { PAGE_CONFIGS, selectPageConfig, displayUrl } from "../app/src/config.js";
 
-for (const host of ["gamentr.top", "www.gamentr.top", "ntrgame.vercel.app", "localhost"]) {
+for (const host of ["acgxx.top", "www.acgxx.top", "ntrgame.vercel.app", "localhost"]) {
   test(`entry host ${host} selects gateway`, () => assert.equal(selectPageConfig(new URL(`https://${host}/`)).id, "gateway"));
 }
 for (const host of ["acgo.vercel.app", "acgo.pages.dev", "acgo.netlify.app"]) {
@@ -20,7 +20,9 @@ test("three exact mirror hosts and verifiable health documents", () => {
     assert.equal(new URL(route.url).searchParams.get("view"), "acg");
   }
 });
-test("version groups match the supplied domains", () => {
-  assert.deepEqual(PAGE_CONFIGS.acg.routes.map((r) => [new URL(r.url).hostname, r.version]), [["acgxx.com", "2.0"], ["acgyxj.de", "2.0"], ["acgntr.com", "1.0"], ["gamentr.com", "1.0"]]);
+test("publisher lists the two live addresses without versions", () => {
+  assert.equal("groups" in PAGE_CONFIGS.acg, false);
+  assert.deepEqual(PAGE_CONFIGS.acg.routes.map((route) => [route.id, new URL(route.url).hostname]), [["acgxx", "acgxx.com"], ["acgyxj", "acgyxj.de"]]);
+  assert.ok(PAGE_CONFIGS.acg.routes.every((route) => !("version" in route) && !route.note));
 });
 test("display strips routing queries", () => assert.equal(displayUrl("https://acgo.pages.dev/?view=acg"), "https://acgo.pages.dev"));

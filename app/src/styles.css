@@ -445,55 +445,12 @@ a.reco-url:hover {
   font-weight: 600;
 }
 
-.version-badge {
-  display: inline-block;
-  margin-left: 4px;
-  padding: 0 6px;
-  border: 1px solid rgba(240, 171, 252, 0.35);
-  border-radius: 5px;
-  font: 600 11px/1.6 var(--mono);
-  color: #f0abfc;
-  vertical-align: 1px;
-}
-
-.version-badge[data-version="1.0"] {
-  color: var(--muted);
-  border-color: var(--line);
-}
-
 .route-note {
   max-width: 280px;
   margin-top: 3px;
   color: var(--muted);
   font-size: 11px;
   line-height: 1.5;
-}
-
-.route-group {
-  margin-top: 24px;
-}
-
-.route-group__heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 6px 14px;
-}
-
-.route-group__heading h3 {
-  margin: 0;
-  font-size: 14px;
-  color: #f0abfc;
-}
-
-.route-group__heading > span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.route-group .line-list {
-  margin-top: 10px;
 }
 
 .line-url {

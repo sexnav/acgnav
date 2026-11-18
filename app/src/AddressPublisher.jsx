@@ -110,7 +110,7 @@ function RouteRow({ row, onCopy }) {
       <div className="line-id">
         <span className="dot" aria-hidden="true" />
         <div className="line-names">
-          <span className="line-name">{row.name} <span className="version-badge" data-version={row.version}>{row.version}</span></span>
+          <span className="line-name">{row.name}</span>
           <a
             className="line-url"
             href={row.url}
@@ -224,7 +224,7 @@ export function AddressPublisher({ config }) {
           >
             <p className="reco-label">
               <span className="reco-bolt" aria-hidden="true">⚡</span>
-              <span>{best?.version === "1.0" ? "1.0 备用推荐 · 新版本轮未响应" : best || running ? config.recommendationLabel : config.recommendationEmpty}</span>
+              <span>{best || running ? config.recommendationLabel : config.recommendationEmpty}</span>
             </p>
             <div className="reco-body">
               <div className="reco-main">
@@ -247,7 +247,7 @@ export function AddressPublisher({ config }) {
                 )}
                 <p className="reco-meta">
                   {best ? (
-                    <>网络响应 · <b>{best.ms}</b> ms · {best.name} · {best.version}</>
+                    <>网络响应 · <b>{best.ms}</b> ms · {best.name}</>
                   ) : recommendationDetail}
                 </p>
               </div>
@@ -294,19 +294,11 @@ export function AddressPublisher({ config }) {
               <i className="l-mid" />280–800ms 一般{" "}
               <i className="l-bad" />&gt;800ms / 超时 较慢
             </p>
-            {config.groups.map((group) => (
-              <div className="route-group" key={group.version}>
-                <div className="route-group__heading">
-                  <h3>{group.title}</h3>
-                  {group.description && <span>{group.description}</span>}
-                </div>
-                <ol className="line-list" aria-label={group.title}>
-                  {rows.filter((row) => row.version === group.version).map((row) => (
-                    <RouteRow key={row.id} row={row} onCopy={handleCopy} />
-                  ))}
-                </ol>
-              </div>
-            ))}
+            <ol className="line-list" aria-label={config.sectionTitle}>
+              {rows.map((row) => (
+                <RouteRow key={row.id} row={row} onCopy={handleCopy} />
+              ))}
+            </ol>
           </section>
 
           <section className="notices" aria-labelledby="notice-title">
